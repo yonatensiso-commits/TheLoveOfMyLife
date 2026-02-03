@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>For You, Tahel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Romantic handwritten + cursive fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Simple, clean, romantic style */
+        body {
+            margin: 0;
+            font-family: "Kalam", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #fff7fb;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle at top, #ffe6f2 0, #fff7fb 40%, #ffffff 100%);
+        }
+
+        header h1 {
+            font-family: "Great Vibes", "Kalam", cursive;
+            font-size: 3.2rem;
+            margin-bottom: 0.3rem;
+            color: #c2185b;
+            letter-spacing: 1px;
+        }
+
+        header h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-top: 0;
+            color: #555;
+            max-width: 520px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.9rem 2.2rem;
+            background: #c2185b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-family: "Kalam", system-ui, sans-serif;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 18px rgba(194, 24, 91, 0.35);
+        }
+
+        .button:hover {
+            background: #ad1457;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(194, 24, 91, 0.45);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            z-index: 10;
+        }
+
+        nav a {
+            color: #c2185b;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-family: "Kalam", system-ui, sans-serif;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        section h3 {
+            font-family: "Great Vibes", "Kalam", cursive;
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            color: #c2185b;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list li {
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+            position: relative;
+        }
+
+        .list li::before {
+            content: "•";
+            color: #c2185b;
+            position: absolute;
+            left: -0.8rem;
+        }
+
+        .timeline {
+            border-left: 2px solid #f8bbd0;
+            padding-left: 1.2rem;
+            margin-left: 0.5rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item h4 {
+            margin: 0 0 0.3rem;
+            color: #ad1457;
+            font-family: "Kalam", system-ui, sans-serif;
+        }
+
+        .signature {
+            margin-top: 2rem;
+            text-align: right;
+            font-style: italic;
+            font-family: "Great Vibes", "Kalam", cursive;
+            font-size: 1.6rem;
+            color: #c2185b;
+        }
+
+        .gallery-placeholder {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .gallery-box {
+            border-radius: 12px;
+            background: repeating-linear-gradient(
+                    45deg,
+                    #fce4ec,
+                    #fce4ec 10px,
+                    #f8bbd0 10px,
+                    #f8bbd0 20px
+            );
+            padding: 1.3rem;
+            color: #6a1b47;
+            font-size: 0.98rem;
+        }
+
+        /* Animals section */
+        .animals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .animal-card {
+            background: #fff9fc;
+            border-radius: 14px;
+            padding: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .animal-card img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .animal-card p {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem 3rem;
+            color: #999;
+            font-size: 0.9rem;
+            font-family: "Kalam", system-ui, sans-serif;
+        }
+
+        @media (min-width: 700px) {
+            header h1 {
+                font-size: 3.6rem;
+            }
+            header h2 {
+                font-size: 1.5rem;
+            }
+            section {
+                padding: 4.5rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#story">Our story</a>
+    <a href="#reasons">Why I love you</a>
+    <a href="#animals">Animals you love</a>
+    <a href="#letter">A little message</a>
+</nav>
+
+<header>
+    <h1>Hey Tahel</h1>
+    <h2>
+        From your Yehonatan.  
+        My beautiful princess. My pretty face.  
+        The love of my life.  
+        I fell in love with you long before I ever saw you in front of me –  
+        so I made you a tiny corner of the internet to tell you how much I love you.
+    </h2>
+    <a href="#story" class="button">Tap to start</a>
+</header>
+
+<section id="story">
+    <h3>Our story (so far)</h3>
+    <div class="card">
+        <p>
+            Before I ever met you in real life, you were already in my heart.  
+            From our first messages, from every “good morning”, from every stupid joke,  
+            I felt myself falling for you more and more – even without seeing you.
+        </p>
+        <p>
+            I remember reading our chats again and again,  
+            smiling like an idiot at my screen, thinking,  
+            “How can someone I haven’t even met yet make me feel like this?”
+        </p>
+        <p>
+            So when we finally met in person,  
+            it didn’t feel like meeting someone new.  
+            It felt like I was finally standing in front of the girl  
+            I’d already fallen in love with a long time before.
+        </p>
+        <p>
+            Since then it’s been jokes, random conversations,  
+            late night talks, stupid memes, looks, smiles –  
+            all the little things that slowly became “us”.
+        </p>
+        <p>
+            Every day, I fall a little more in love with you.  
+            And honestly, I love that I can call you  
+            <strong>my girlfriend</strong>, my beautiful princess,  
+            and the love of my life.
+        </p>
+    </div>
+
+    <div class="card timeline">
+        <div class="timeline-item">
+            <h4>How it started</h4>
+            <p>
+                It started with a screen, not with a meeting.  
+                With typing, not with touch.  
+                With your words, your energy, your voice, your way of being you.  
+                By the time I saw you standing in front of me,  
+                my heart was already completely yours.
+            </p>
+        </div>
+        <div class="timeline-item">
+            <h4>A moment I’ll never forget</h4>
+            <p>
+                One of my favorite memories is us just being together,  
+                laughing about something stupid, not caring about anything else,  
+                and feeling like time stopped for a bit.  
+                In those moments I always think:  
+                “I love this girl so much. I don’t want this to end.”
+            </p>
+        </div>
+        <div class="timeline-item">
+            <h4>What I want next</h4>
+            <p>
+                More time with you.  
+                More nights where we forget the time, more hugs that last too long,  
+                more moments where I look at you and think  
+                “how is this amazing person actually mine?”.  
+                I just want a future where I can keep telling you  
+                how much I love you, again and again.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="reasons">
+    <h3>Some reasons I’m crazy about you</h3>
+    <div class="card">
+        <ul class="list">
+            <li>The way you laugh, especially when you try to hold it in and totally fail.</li>
+            <li>Your eyes – and the way they look at me when you’re really in the moment with me.</li>
+            <li>How you care about people more than you admit, and how big your heart really is.</li>
+            <li>Your hugs. They honestly feel like home, like a place I never want to leave.</li>
+            <li>The little weird, cute things you do that make you different from everyone else.</li>
+            <li>How real and honest you are, even when it’s not the easiest thing.</li>
+            <li>The way you can calm me down and make me feel better without even trying.</li>
+            <li>Your patience with me, even when I’m being annoying or stubborn.</li>
+            <li>Your smile, and how it can fix my whole day in one second.</li>
+            <li>
+                And most of all – the way you make it so easy for me to love you.  
+                I tell you “I love you” a lot, and I mean it every. single. time.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="animals">
+    <h3>Animals you love</h3>
+    <div class="card">
+        <p>
+            Because you love animals so much,  
+            this whole part is just for pure cuteness.  
+            Ten animals, just to make you smile –  
+            and a little reminder that I love you even more than all of them together.
+        </p>
+
+        <div class="animals-grid">
+            <!-- Make sure you have animal1.jpg ... animal10.jpg in the same folder as this file -->
+            <div class="animal-card">
+                <img src="animal1.jpg" alt="Cute animal 1">
+                <p>Animal #1 – something soft and cute, just like your heart.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal2.jpg" alt="Cute animal 2">
+                <p>Animal #2 – the kind of face that makes you say “awwww” out loud.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal3.jpg" alt="Cute animal 3">
+                <p>Animal #3 – maybe a cat, maybe a dog, maybe anything you love.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal4.jpg" alt="Cute animal 4">
+                <p>Animal #4 – one that looks like it just wants a big hug.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal5.jpg" alt="Cute animal 5">
+                <p>Animal #5 – tiny, fluffy, and absolutely adorable.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal6.jpg" alt="Cute animal 6">
+                <p>Animal #6 – the kind of animal you’d want to take home.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal7.jpg" alt="Cute animal 7">
+                <p>Animal #7 – a funny one, just to make you laugh.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal8.jpg" alt="Cute animal 8">
+                <p>Animal #8 – a picture you could stare at for way too long.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal9.jpg" alt="Cute animal 9">
+                <p>Animal #9 – one of those “this is so cute it hurts” photos.</p>
+            </div>
+            <div class="animal-card">
+                <img src="animal10.jpg" alt="Cute animal 10">
+                <p>Animal #10 – your absolute favorite one (and I love how happy it makes you).</p>
+            </div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: #777; margin-top: 1rem;">
+            To change the pictures, just put 10 animal images in the same folder as this file  
+            and name them <code>animal1.jpg</code>, <code>animal2.jpg</code>, ..., <code>animal10.jpg</code>.
+        </p>
+    </div>
+</section>
+
+<section id="letter">
+    <h3>A little message for you</h3>
+    <div class="card">
+        <p>
+            Hey Tahel, my beautiful princess, my pretty face,  
+            the love of my life,
+        </p>
+        <p>
+            I know I tell you “I love you” a lot.  
+            I’ll probably say it today, tomorrow, and the day after that.  
+            But I want you to know that every single time I say it,  
+            I mean it with my whole heart.
+        </p>
+        <p>
+            I love you when you’re happy,  
+            I love you when you’re tired,  
+            I love you when you overthink,  
+            I love you when you’re loud and when you’re quiet.  
+            I just… love you. So, so much.
+        </p>
+        <p>
+            You have no idea how much you changed my days.  
+            Your messages, your voice, your hugs, your jokes –  
+            all the small things you do without thinking about them  
+            actually mean the world to me.
+        </p>
+        <p>
+            I’m not going to say everything will always be perfect.  
+            But I can say this: I’m here.  
+            For the fun days, the bad moods, the tired days, the lazy days,  
+            the deep talks, and the stupid ones too.  
+            I want to be there for all of it, with you.
+        </p>
+        <p>
+            Thank you for being you.  
+            Thank you for letting me be part of your life.  
+            I’m so, so lucky to call you mine.  
+            And I will never get tired of telling you  
+            how much I love you.
+        </p>
+
+        <p class="signature">
+            Yours,  
+            Yehonatan
+        </p>
+    </div>
+</section>
+
+<footer>
+    Made just for you, with a lot of love.
+</footer>
+
+</body>
+</html>
